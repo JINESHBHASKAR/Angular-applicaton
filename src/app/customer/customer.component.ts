@@ -1,15 +1,25 @@
 import { Component, OnInit } from '@angular/core';
+import {CustomerService} from './customer.service';
+import { Observable, from } from "rxjs";
 
 @Component({
   selector: 'app-customer',
   templateUrl: './customer.component.html',
-  styleUrls: ['./customer.component.css']
+  styleUrls: ['./customer.component.css'],
+  providers:[CustomerService]
 })
 export class CustomerComponent implements OnInit {
+ customers : Observable<[]> =new Observable(); 
 
-  constructor() { }
+ //customers: Array<any>;
+ 
+  constructor(private _customerService:CustomerService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit() {
+    this._customerService.getAllCustomer().subscribe((response) => {
+      this.customers = response
+ });
+  
+}
 
 }
