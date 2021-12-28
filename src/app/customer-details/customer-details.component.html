@@ -1,1 +1,24 @@
-<p>customer-details works!</p>
+<h2>Customer Details</h2>
+<div *ngIf="customer">
+    <div>
+        <label>EmployeeID: </label> {{customer.id}}
+    </div>
+
+    <div>
+        <label>EmployeeName: </label> {{customer.name}}
+    </div>
+
+    <div>
+        <label>Email: </label> {{customer.email}}
+    </div>
+    <div>
+        <label>Mobile: </label> {{customer.mob}}
+    </div>
+</div>
+
+
+<br>
+
+<br>
+
+<button (click)="list()" class="btn btn-primary">Back to Customer List</button><br>

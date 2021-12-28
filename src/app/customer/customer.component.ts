@@ -9,7 +9,7 @@ import { Observable, from } from "rxjs";
   providers:[CustomerService]
 })
 export class CustomerComponent implements OnInit {
- customers : Observable<[]> =new Observable(); 
+  customers! : any [];
 
  //customers: Array<any>;
  

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {Customer} from '../customer/customer';
+import {CustomerService} from '../customer/customer.service';
+import {CustomerListComponent} from '../customer-list/customer-list.component';
+import {ActivatedRoute,Router} from '@angular/router';
 
 @Component({
   selector: 'app-customer-details',
@@ -7,9 +11,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerDetailsComponent implements OnInit {
 
-  constructor() { }
+ 
+  studentId!:number;
+  customer!: Customer;
 
-  ngOnInit(): void {
+  constructor(private route: ActivatedRoute,private router: Router,private customerService:CustomerService) { }
+
+  ngOnInit() {
+    this.customer=new Customer();
+    this.studentId=this.route.snapshot.params['studentId'];
+
+    this.customerService.getCustomer(this.studentId).subscribe(data => {
+      console.log(data)
+      this.customer=data;
+    },error =>console.log(error));
+  }
+
+  list(){
+    this.router.navigate(['customers']);
   }
 
 }
+
+
+
